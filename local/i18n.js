@@ -48,7 +48,7 @@ const zh = {
   editorPlaceholder:"不必写得漂亮，写下你想说的就好。",localNotes:"保存在这台电脑上。",footerLine:"少一点孤单，多一点自己。",meetFamily:"认识毛茸茸家族",localChat:"本地对话",quietMode:"安静陪伴模式",
   prototypeLabel:"网页原型 · 实体陪伴产品概念",close:"关闭",breathTitle:"让世界等你一分钟。",breathIntro:"跟随自己舒服的节奏，不需要做得完美。",breathHint:"这一分钟，不必用来提高效率。",startBreath:"和 Petal 一起呼吸",
   noteNameTitle:"给这个念头起个名字？",noteNameLabel:"名字，或 文件夹 / 名字",startWriting:"开始写",
-  videoTitle:"和她待一小会儿。",videoSubtitle:"网页原型的操作演示。示例互动，真实可体验的小习惯。",videoNote:"产品概念 · 英文字幕",downloadDemo:"下载演示",
+  videoTitle:"认识你的软乎乎搭子。",videoSubtitle:"看看 Petal 如何成为你毛茸茸的桌面陪伴。",videoNote:"产品概念短片 · 原版音轨",downloadDemo:"下载演示",
   familyTitle:"不同性格，一起发光。",familySubtitle:"探索更多毛茸茸的可能。这些是实体产品的概念形象。",chatTitle:"留一点空间，聊聊天。",chatIntro:"实时对话需要本地模型。陪伴预览随时都可以体验。",
   chatPlaceholder:"你在想些什么？",voiceSettings:"语音设置与详情",voiceMode:"语音模式",voiceNotes:"语音与便签 · 较慢",voiceOnly:"快速语音 · 英语",send:"发送消息",
   inbox:"收件箱吵吵的。\n我软软的。",pat1:"摸摸是给我的？\n今天最棒的会议！",pat2:"情绪支援毛球，\n到岗啦。",pat3:"你已经做了很多。\n来，坐我旁边。",
