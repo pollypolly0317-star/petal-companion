@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fbf8f3">
-<title>Petal — Small, fluffy friend.</title><link rel="icon" type="image/png" href="./assets/petal-pink.png"><link rel="stylesheet" href="./style.css">
+<title>Petal — Small, fluffy friend.</title><link rel="icon" type="image/png" href="./assets/petal-pink.webp"><link rel="stylesheet" href="./style.css">
 </head>
 <body>
 <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
@@ -30,7 +30,7 @@
       </div>
       <p class="concept-note" data-i18n="conceptNote">A desk companion in the making. Meet her here first.</p>
     </div>
-    <button id="pet-buddy" class="pet-button" data-i18n-aria="petAria" aria-label="Give Petal a little pat"><img id="hero-pet" src="./assets/petal-pink.png" alt="A soft pink furball with big, expressive lilac eyes" width="1024" height="1024" fetchpriority="high"></button>
+    <button id="pet-buddy" class="pet-button" data-i18n-aria="petAria" aria-label="Give Petal a little pat"><img id="hero-pet" src="./assets/petal-pink.webp" alt="A soft pink furball with big, expressive lilac eyes" width="1024" height="1024" fetchpriority="high"></button>
     <div class="speech-bubble" id="buddy-speech" role="status">Your inbox is loud.<br>I'm soft.<svg class="icon"><use href="./assets/icons.svg#Heart"/></svg></div>
     <div class="pat-caption"><span data-i18n="givePat">Give her a little pat</span><svg class="icon"><use href="./assets/icons.svg#Heart"/></svg></div>
     <svg class="pat-heart icon" aria-hidden="true"><use href="./assets/icons.svg#Heart"/></svg>
@@ -48,7 +48,7 @@
       <div class="moment-conversation">
         <div class="section-label" data-i18n="previewLabel">INTERACTIVE PREVIEW · SAMPLE REPLIES</div>
         <div class="sample-message you-message"><span class="you-avatar" aria-hidden="true">Y</span><div class="sample-bubble"><small data-i18n="you">YOU</small><p id="sample-user">My brain has 37 tabs open.</p></div></div>
-        <div class="sample-message petal-message"><img class="pet-avatar" src="./assets/petal-pink.png" alt=""><div class="sample-bubble"><small>PETAL</small><p id="sample-reply" aria-live="polite">Let’s close 36. What’s one tiny thing we can do together?</p></div></div>
+        <div class="sample-message petal-message"><img class="pet-avatar" src="./assets/petal-pink.webp" alt=""><div class="sample-bubble"><small>PETAL</small><p id="sample-reply" aria-live="polite">Let’s close 36. What’s one tiny thing we can do together?</p></div></div>
         <div class="moment-actions">
           <button data-action="focus"><svg class="icon"><use href="./assets/icons.svg#Timer"/></svg><span data-i18n="focusMe">Focus with me</span></button>
           <button id="open-breathing"><svg class="icon"><use href="./assets/icons.svg#Wind"/></svg><span data-i18n="softReset">Take a soft reset</span></button>
@@ -81,7 +81,7 @@
 
 <dialog id="video-dialog" class="video-dialog" aria-labelledby="video-title"><button class="dialog-close icon-button" data-close="video-dialog" data-i18n-aria="close" aria-label="Close"><svg class="icon"><use href="./assets/icons.svg#X"/></svg></button><div class="video-heading"><h2 id="video-title" data-i18n="videoTitle">Meet your soft sidekick.</h2><p data-i18n="videoSubtitle">A little glimpse of Petal, your fluffy desk companion.</p></div><video id="demo-video" controls playsinline preload="metadata" poster="./assets/demo-poster.jpg"><source src="./assets/petal-product-demo.mp4" type="video/mp4"></video><div class="video-footer"><span data-i18n="videoNote">Product concept film · Original audio</span><a href="./assets/petal-product-demo.mp4" download="petal-demo.mp4" data-i18n="downloadDemo">Download demo</a></div></dialog>
 
-<dialog id="family-dialog" class="family-dialog" aria-labelledby="family-title"><button class="dialog-close icon-button" data-close="family-dialog" data-i18n-aria="close" aria-label="Close"><svg class="icon"><use href="./assets/icons.svg#X"/></svg></button><h2 id="family-title" data-i18n="familyTitle">Different minds. Brighter together.</h2><p data-i18n="familySubtitle">Exploring a whole spectrum of soft. These are physical product concepts.</p><img src="./assets/petal-family.png" alt="Six furry companion concepts: pink, blue, green, orange, black and white"></dialog>
+<dialog id="family-dialog" class="family-dialog" aria-labelledby="family-title"><button class="dialog-close icon-button" data-close="family-dialog" data-i18n-aria="close" aria-label="Close"><svg class="icon"><use href="./assets/icons.svg#X"/></svg></button><h2 id="family-title" data-i18n="familyTitle">Different minds. Brighter together.</h2><p data-i18n="familySubtitle">Exploring a whole spectrum of soft. These are physical product concepts.</p><img src="./assets/petal-family.webp" alt="Six furry companion concepts: pink, blue, green, orange, black and white"></dialog>
 
 <dialog id="chat-dialog" class="chat-dialog" aria-labelledby="chat-title"><button class="dialog-close icon-button" data-close="chat-dialog" data-i18n-aria="close" aria-label="Close"><svg class="icon"><use href="./assets/icons.svg#X"/></svg></button><h2 id="chat-title" data-i18n="chatTitle">A little space to talk.</h2><p class="chat-intro" data-i18n="chatIntro">Live conversation uses your local models. The guided preview works anytime.</p><a class="local-app-link" id="local-app-link" href="http://localhost:8090/" target="_blank" rel="noopener" hidden data-i18n="openLocalApp">Open the local app</a><div id="conversation" class="conversation" role="log" aria-label="Conversation" aria-live="polite"></div><form class="chat-composer" id="chat-form"><textarea id="chat-input" rows="1" maxlength="3000" data-i18n-placeholder="chatPlaceholder" data-i18n-aria="chatPlaceholder" placeholder="What's on your mind?" aria-label="What's on your mind?"></textarea><button id="start" class="talk-button icon-button" type="button" aria-label="Start voice conversation" aria-describedby="status" disabled><span id="talk-icon"><svg class="icon"><use href="./assets/icons.svg#Mic"/></svg></span><span id="talk-label" class="sr-only">Talk</span></button><button id="send-message" class="send-button icon-button" type="submit" data-i18n-aria="send" aria-label="Send message"><svg class="icon"><use href="./assets/icons.svg#ArrowUp"/></svg></button></form><p id="status" class="voice-status" role="status">Checking local models…</p><div id="meter"><div id="level"></div></div><details class="settings"><summary data-i18n="voiceSettings">Voice settings & details</summary><label for="mode" data-i18n="voiceMode">Voice mode</label><select id="mode"><option value="native" data-i18n="voiceOnly">Fast voice · English</option><option value="tools" data-i18n="voiceNotes">Voice + notes · slower</option></select><pre id="timing"></pre><pre id="activity"></pre></details></dialog>
 <script type="module" src="./companion.js"></script><script type="module" src="./vault.js"></script><script type="module" src="./voice.js"></script>
