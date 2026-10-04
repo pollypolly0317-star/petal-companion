@@ -1,4 +1,5 @@
 """Start the downloaded audio server on localhost, logging outside source control."""
+import os
 import subprocess
 from pathlib import Path
 
@@ -13,6 +14,9 @@ args = [str(runner), "-m", str(models / "LFM2.5-Audio-1.5B-Q4_0.gguf"),
         "-mv", str(models / "vocoder-LFM2.5-Audio-1.5B-Q4_0.gguf"),
         "--tts-speaker-file", str(models / "tokenizer-LFM2.5-Audio-1.5B-Q4_0.gguf"),
         "--host", "127.0.0.1", "--port", "8088", "-c", "4096", "-ngl", "99", "-t", "4"]
+if os.environ.get("PETAL_CPU_ONLY") == "1":
+    args[args.index("-ngl") + 1] = "0"
+    args.extend(["--device", "none", "--no-mmproj-offload", "-fit", "off"])
 with (root / ".local/audio-server.log").open("ab") as log:
     process = subprocess.Popen(args, cwd=runner.parent, stdin=subprocess.DEVNULL,
                                stdout=log, stderr=subprocess.STDOUT, start_new_session=True)

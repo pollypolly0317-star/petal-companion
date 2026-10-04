@@ -1,13 +1,89 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Petal · Your second mind</title><link rel="stylesheet" href="/style.css"></head>
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fbf8f3">
+<title>Petal — Small, fluffy friend.</title><link rel="icon" type="image/png" href="./assets/petal-pink.png"><link rel="stylesheet" href="./style.css">
+</head>
 <body>
-<header><a class="brand" href="/" aria-label="Petal home">petal<span class="brand-dot">.</span></a><span class="local-label"><i></i> Local</span></header>
-<main>
-<aside class="sidebar"><div class="section-label">Notes <span id="note-count">0</span></div><input id="search" type="search" placeholder="Search" aria-label="Search your notes"><nav id="note-list" aria-label="Notes"></nav><button id="new-note" class="text-button">＋ New note</button></aside>
-<section class="note-panel"><div class="note-toolbar"><div id="breadcrumb">Untitled</div><span id="save-state"></span></div><div class="note-heading"><input id="note-path" aria-label="Note path" placeholder="Untitled.md" disabled><button id="save-note" disabled>Save</button></div><textarea id="editor" aria-label="Markdown note editor" placeholder="Start here." disabled></textarea><div id="note-links"></div><div class="editor-foot"><span id="word-count">0 words</span></div></section>
-<section class="companion"><div class="section-label">Voice</div><div class="voice-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div><button id="start" class="talk-button" aria-label="Start voice conversation"><span id="talk-icon">◉</span><span id="talk-label">Talk</span></button><p id="status" role="status">Ready</p><div id="meter"><div id="level"></div></div><div id="conversation" aria-live="polite"></div><details class="settings"><summary>Settings</summary><select id="mode" aria-label="Voice mode"><option value="tools">Voice + notes</option><option value="native">Audio only</option></select><pre id="timing"></pre></details></section>
+<a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+<header class="app-header">
+  <a class="brand" href="./" aria-label="Petal home">petal<svg class="icon brand-mark"><use href="./assets/icons.svg#Sprout"/></svg></a>
+  <nav class="main-nav" aria-label="Main navigation">
+    <button class="nav-button active" data-view="home" aria-current="page" data-i18n="meet">Meet Petal</button>
+    <button class="nav-button" data-action="try" data-i18n="tryMoment">Try a moment</button>
+    <button class="nav-button" data-view="notes" data-i18n="littleNotes">Little notes</button>
+  </nav>
+  <div class="header-actions">
+    <button id="locale-toggle" class="locale-toggle" aria-label="Switch to Chinese"><span lang="en">EN</span><i>/</i><span lang="zh-CN">中文</span></button>
+    <button class="watch-button" data-action="video"><span class="play-dot"><svg class="icon"><use href="./assets/icons.svg#Play"/></svg></span><span data-i18n="watchDemo">Watch demo</span></button>
+  </div>
+</header>
+<main id="main">
+<div id="home-view">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <h1 id="hero-title"><span data-i18n="headline1">Big feelings.</span><span data-i18n="headline2">Small, fluffy friend.</span></h1>
+      <p class="hero-description"><span data-i18n="lead1">A little focus. A little laughter.</span><br><span data-i18n="lead2">A softer place to land between it all.</span></p>
+      <div class="hero-actions">
+        <button class="primary-button" data-action="try"><span data-i18n="spendMinute">Spend a minute with her</span><svg class="icon arrow-right"><use href="./assets/icons.svg#ArrowUp"/></svg></button>
+        <button class="text-button video-link" data-action="video"><span class="play-outline"><svg class="icon"><use href="./assets/icons.svg#Play"/></svg></span><span data-i18n="seeAction">See her in action</span></button>
+      </div>
+      <p class="concept-note" data-i18n="conceptNote">A desk companion in the making. Meet her here first.</p>
+    </div>
+    <button id="pet-buddy" class="pet-button" data-i18n-aria="petAria" aria-label="Give Petal a little pat"><img id="hero-pet" src="./assets/petal-pink.png" alt="A soft pink furball with big, expressive lilac eyes" width="1024" height="1024" fetchpriority="high"></button>
+    <div class="speech-bubble" id="buddy-speech" role="status">Your inbox is loud.<br>I'm soft.<svg class="icon"><use href="./assets/icons.svg#Heart"/></svg></div>
+    <div class="pat-caption"><span data-i18n="givePat">Give her a little pat</span><svg class="icon"><use href="./assets/icons.svg#Heart"/></svg></div>
+    <svg class="pat-heart icon" aria-hidden="true"><use href="./assets/icons.svg#Heart"/></svg>
+  </section>
+  <section id="experience" class="experience" aria-labelledby="experience-heading">
+    <div class="experience-heading"><h2 id="experience-heading" data-i18n="batteryHeading">How’s your human battery?</h2>
+      <div class="mood-options" role="group" aria-label="Choose a sample mood">
+        <button data-mood="okay" aria-pressed="false" data-i18n="moodOkay">Doing okay</button>
+        <button data-mood="fried" aria-pressed="false" data-i18n="moodFried">A little fried</button>
+        <button data-mood="overwhelmed" aria-pressed="false" data-i18n="moodOverwhelmed">Overwhelmed</button>
+        <button data-mood="low" aria-pressed="false" data-i18n="moodLow">Running on 1%</button>
+      </div>
+    </div>
+    <div class="moment-panel">
+      <div class="moment-conversation">
+        <div class="section-label" data-i18n="previewLabel">INTERACTIVE PREVIEW · SAMPLE REPLIES</div>
+        <div class="sample-message you-message"><span class="you-avatar" aria-hidden="true">Y</span><div class="sample-bubble"><small data-i18n="you">YOU</small><p id="sample-user">My brain has 37 tabs open.</p></div></div>
+        <div class="sample-message petal-message"><img class="pet-avatar" src="./assets/petal-pink.png" alt=""><div class="sample-bubble"><small>PETAL</small><p id="sample-reply" aria-live="polite">Let’s close 36. What’s one tiny thing we can do together?</p></div></div>
+        <div class="moment-actions">
+          <button data-action="focus"><svg class="icon"><use href="./assets/icons.svg#Timer"/></svg><span data-i18n="focusMe">Focus with me</span></button>
+          <button id="open-breathing"><svg class="icon"><use href="./assets/icons.svg#Wind"/></svg><span data-i18n="softReset">Take a soft reset</span></button>
+          <button id="recharge"><svg class="icon"><use href="./assets/icons.svg#Sparkles"/></svg><span data-i18n="makeSmile">Make me smile</span></button>
+        </div>
+      </div>
+      <section class="focus-section" id="focus-section" aria-labelledby="focus-heading">
+        <div class="section-label" id="focus-heading" data-i18n="focusTogether">FOCUS TOGETHER</div>
+        <span id="timer-display" class="timer-digits" role="timer" aria-label="Focus time remaining">25:00</span>
+        <label class="focus-task"><svg class="icon"><use href="./assets/icons.svg#Check"/></svg><input id="focus-task" maxlength="160" data-i18n-placeholder="oneThing" data-i18n-aria="oneThing" placeholder="One small thing…" aria-label="One small thing"></label>
+        <div class="timer-actions"><button id="focus-toggle" class="primary-button"><svg class="icon"><use href="./assets/icons.svg#Play"/></svg><span data-i18n="startFocus">Let’s do this, gently</span></button><button id="focus-reset" class="icon-button reset-timer" data-i18n-aria="resetTimer" aria-label="Reset focus timer"><svg class="icon"><use href="./assets/icons.svg#RotateCcw"/></svg></button></div>
+        <p id="focus-message" class="focus-message" role="status" data-i18n="calmerYou">A calmer you is still a you.</p>
+      </section>
+    </div>
+  </section>
+</div>
+
+<section id="notes-view" class="notes-view" hidden aria-labelledby="notes-heading">
+  <div class="notes-heading"><div><h1 id="notes-heading" data-i18n="notesTitle">A little room in your head.</h1><p data-i18n="notesSubtitle">Ideas, loose thoughts, things for another day. Leave them here.</p></div><button id="new-note" class="primary-button"><svg class="icon"><use href="./assets/icons.svg#Plus"/></svg><span data-i18n="newNote">Write a little note</span></button></div>
+  <div class="vault-layout"><aside class="notes-sidebar"><label class="note-search"><svg class="icon"><use href="./assets/icons.svg#Search"/></svg><input id="search" type="search" data-i18n-placeholder="searchNotes" data-i18n-aria="searchNotes" placeholder="Find a little note" aria-label="Find a little note"></label><div class="section-label"><span data-i18n="allNotes">ALL NOTES</span><span id="note-count">0</span></div><nav id="note-list" aria-label="Notes"></nav></aside>
+    <section class="note-panel"><div id="note-empty" class="note-empty"><svg class="icon"><use href="./assets/icons.svg#NotebookPen"/></svg><h2 data-i18n="emptyTitle">Your thoughts can put their feet up.</h2><p data-i18n="emptyBody">No perfect sentences needed. Just a place to set things down.</p><button id="new-note-empty" class="outline-button" data-i18n="firstNote">Write your first little note</button></div><div id="note-editor-shell" hidden><div class="note-toolbar"><span id="breadcrumb">Little notes</span><span id="save-state"></span></div><div class="note-heading"><input id="note-path" data-i18n-aria="notePath" aria-label="Note path" disabled><button id="save-note" class="primary-button" disabled data-i18n="saveNote">Keep this safe</button></div><textarea id="editor" data-i18n-aria="noteEditor" data-i18n-placeholder="editorPlaceholder" aria-label="Markdown note editor" placeholder="It doesn't have to be polished. Just yours." disabled></textarea><div id="note-links"></div><div class="editor-foot"><span id="word-count">0 characters</span><span data-i18n="localNotes">Saved on this computer.</span></div></div></section>
+  </div>
+</section>
 </main>
-<footer class="activity-bar"><div class="activity-title"><span>·</span></div><div id="feedback" role="status">All changes saved</div><details id="activity-details"><summary>Activity ↗</summary><pre id="activity"></pre></details></footer>
-<script type="module" src="/vault.js"></script><script type="module" src="/voice.js"></script>
-</body></html>
+<footer class="app-footer"><span id="feedback" role="status"><svg class="icon"><use href="./assets/icons.svg#Leaf"/></svg><span data-i18n="footerLine">A little less alone. A little more you.</span></span><div class="footer-actions"><button class="footer-button" id="open-family" data-i18n="meetFamily">Meet the family</button><button class="footer-button" id="open-chat" data-i18n="localChat">Local chat</button><button class="footer-button icon-button" id="quiet-mode" aria-pressed="false" data-i18n-aria="quietMode" aria-label="Quiet mode"><svg class="icon"><use href="./assets/icons.svg#Moon"/></svg></button></div><span class="prototype-label" data-i18n="prototypeLabel">Web prototype · Physical companion concept</span></footer>
+
+<dialog id="breathing-dialog" class="breathing-dialog" aria-labelledby="breathing-title"><button class="dialog-close icon-button" data-close="breathing-dialog" data-i18n-aria="close" aria-label="Close"><svg class="icon"><use href="./assets/icons.svg#X"/></svg></button><h2 id="breathing-title" data-i18n="breathTitle">Let the world wait a minute.</h2><p data-i18n="breathIntro">Follow your comfortable pace. There’s no perfect way to do this.</p><div class="breathing-circle" id="breathing-circle"><span id="breathing-phase">Ready when you are</span><small id="breathing-count">One minute, just for you</small></div><progress id="breathing-progress" value="0" max="60" aria-label="Breathing break progress"></progress><p id="breathing-hint" data-i18n="breathHint">This minute doesn't need to be productive.</p><button class="primary-button" id="breathing-toggle" data-i18n="startBreath">Breathe with Petal</button></dialog>
+
+<dialog id="new-note-dialog" aria-labelledby="new-note-title"><button class="dialog-close icon-button" data-close="new-note-dialog" data-i18n-aria="close" aria-label="Close"><svg class="icon"><use href="./assets/icons.svg#X"/></svg></button><form id="new-note-form"><h2 id="new-note-title" data-i18n="noteNameTitle">What shall we call this thought?</h2><label for="new-note-path" data-i18n="noteNameLabel">A name, or folder / name</label><input id="new-note-path" required maxlength="200" placeholder="Little things/Today.md"><p id="new-note-error" role="alert"></p><button class="primary-button" type="submit" data-i18n="startWriting">Start writing</button></form></dialog>
+
+<dialog id="video-dialog" class="video-dialog" aria-labelledby="video-title"><button class="dialog-close icon-button" data-close="video-dialog" data-i18n-aria="close" aria-label="Close"><svg class="icon"><use href="./assets/icons.svg#X"/></svg></button><div class="video-heading"><h2 id="video-title" data-i18n="videoTitle">A minute in her company.</h2><p data-i18n="videoSubtitle">A walkthrough of the web prototype. Sample interactions, real little rituals.</p></div><video id="demo-video" controls playsinline preload="metadata" poster="./assets/demo-poster.jpg"><source src="./assets/petal-demo.mp4" type="video/mp4"><track kind="captions" src="./assets/petal-demo.vtt" srclang="en" label="English" default></video><div class="video-footer"><span data-i18n="videoNote">Product concept · English captions</span><a href="./assets/petal-demo.mp4" download="petal-demo.mp4" data-i18n="downloadDemo">Download demo</a></div></dialog>
+
+<dialog id="family-dialog" class="family-dialog" aria-labelledby="family-title"><button class="dialog-close icon-button" data-close="family-dialog" data-i18n-aria="close" aria-label="Close"><svg class="icon"><use href="./assets/icons.svg#X"/></svg></button><h2 id="family-title" data-i18n="familyTitle">Different minds. Brighter together.</h2><p data-i18n="familySubtitle">Exploring a whole spectrum of soft. These are physical product concepts.</p><img src="./assets/petal-family.png" alt="Six furry companion concepts: pink, blue, green, orange, black and white"></dialog>
+
+<dialog id="chat-dialog" class="chat-dialog" aria-labelledby="chat-title"><button class="dialog-close icon-button" data-close="chat-dialog" data-i18n-aria="close" aria-label="Close"><svg class="icon"><use href="./assets/icons.svg#X"/></svg></button><h2 id="chat-title" data-i18n="chatTitle">A little space to talk.</h2><p class="chat-intro" data-i18n="chatIntro">Live conversation uses your local models. The guided preview works anytime.</p><a class="local-app-link" id="local-app-link" href="http://localhost:8090/" target="_blank" rel="noopener" hidden data-i18n="openLocalApp">Open the local app</a><div id="conversation" class="conversation" role="log" aria-label="Conversation" aria-live="polite"></div><form class="chat-composer" id="chat-form"><textarea id="chat-input" rows="1" maxlength="3000" data-i18n-placeholder="chatPlaceholder" data-i18n-aria="chatPlaceholder" placeholder="What's on your mind?" aria-label="What's on your mind?"></textarea><button id="start" class="talk-button icon-button" type="button" aria-label="Start voice conversation" aria-describedby="status" disabled><span id="talk-icon"><svg class="icon"><use href="./assets/icons.svg#Mic"/></svg></span><span id="talk-label" class="sr-only">Talk</span></button><button id="send-message" class="send-button icon-button" type="submit" data-i18n-aria="send" aria-label="Send message"><svg class="icon"><use href="./assets/icons.svg#ArrowUp"/></svg></button></form><p id="status" class="voice-status" role="status">Checking local models…</p><div id="meter"><div id="level"></div></div><details class="settings"><summary data-i18n="voiceSettings">Voice settings & details</summary><label for="mode" data-i18n="voiceMode">Voice mode</label><select id="mode"><option value="native" data-i18n="voiceOnly">Fast voice · English</option><option value="tools" data-i18n="voiceNotes">Voice + notes · slower</option></select><pre id="timing"></pre><pre id="activity"></pre></details></dialog>
+<script type="module" src="./companion.js"></script><script type="module" src="./vault.js"></script><script type="module" src="./voice.js"></script>
+</body>
+</html>

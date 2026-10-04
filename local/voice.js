@@ -1,3 +1,5 @@
+import {isShowcase} from './runtime.js';
+import {t} from './i18n.js';
 const $ = id => document.getElementById(id);
 let session = null;
 const SILENCE_MS = 650;
@@ -5,11 +7,12 @@ const THRESHOLD = 0.012;
 
 function log(message) {
   $("activity").textContent = `${new Date().toLocaleTimeString()} ${message}\n` + $("activity").textContent.slice(0, 6000);
-  $("feedback").textContent = message;
+
 }
 function line(role, text) {
   const entry = document.createElement("div");
-  const label = document.createElement("small"); label.textContent = role === "You" ? "YOU" : "PETAL";
+  const label = document.createElement("small"); label.textContent = role === "You" ? t("you") : "PETAL";
+  entry.className = role === "You" ? "user-message" : "";
   const content = document.createElement("span"); content.textContent = text;
   entry.append(label, content);
   $("conversation").append(entry);
@@ -19,13 +22,21 @@ function line(role, text) {
 async function refreshNotes() {
   window.dispatchEvent(new Event("vault-changed"));
 }
+let currentState = "idle";
 function talkState(state) {
-  $("start").disabled = false;
-  $("start").className = "talk-button" + (state === "listening" ? " listening" : state === "speaking" ? " speaking" : "");
-  $("talk-label").textContent = state === "idle" ? "Talk" : state === "listening" ? "End" : "Interrupt";
-  $("start").setAttribute("aria-label", state === "idle" ? "Start voice conversation" : state === "listening" ? "End voice conversation" : "Interrupt response");
-  $("talk-icon").textContent = state === "idle" ? "◉" : state === "listening" ? "■" : "Ⅱ";
+  currentState = state;
+  window.petalVoiceActive = state !== "idle";
+  $("send-message").disabled = isShowcase || state !== "idle" || Boolean(window.petalChatBusy);
+  const ready = window.petalReadiness || {};
+  $("start").disabled = isShowcase || state === "idle" && (!ready.audio_ready || ($("mode").value === "tools" && !ready.chat_ready) || window.petalChatBusy);
+  $("start").className = "talk-button icon-button" + (state === "listening" ? " listening" : state === "speaking" ? " speaking" : "");
+  const label = t(state === "idle" ? "talk" : state === "listening" ? "endTalk" : "interrupt");
+  $("talk-label").textContent = label; $("start").setAttribute("aria-label", label);
+  $("talk-icon").innerHTML = '<svg class="icon"><use href="./assets/icons.svg#' + (state === "idle" ? "Mic" : state === "listening" ? "Square" : "Pause") + '"/></svg>';
 }
+window.addEventListener("petal-readiness", () => talkState(currentState));
+window.addEventListener("petal-language", () => talkState(currentState));
+$("mode").addEventListener("change", () => talkState(currentState));
 function resetCapture(s) { s.chunks = []; s.preRoll = []; s.started = null; s.lastVoice = null; s.voicedMs = 0; }
 function stopPlayback(s) {
   for (const source of s.sources) { try { source.stop(); } catch {} }
@@ -74,7 +85,7 @@ function play(s, event) {
   s.playAt = Math.max(s.playAt, s.context.currentTime + 0.04);
   source.start(s.playAt); s.playAt += buffer.duration;
   s.sources.add(source); source.onended = () => s.sources.delete(source);
-  $("status").textContent = "Speaking";
+  $("status").textContent = t("speaking");
   talkState("speaking");
 }
 async function turn(s, chunks) {
@@ -83,7 +94,7 @@ async function turn(s, chunks) {
   const abort = s.abort;
   resetCapture(s);
   talkState("speaking");
-  $("status").textContent = "Thinking";
+  $("status").textContent = t("thinking");
   const sentAt = performance.now();
   let firstAudio = null, assistant = null, responseText = "", completed = false;
   try {
@@ -95,11 +106,11 @@ async function turn(s, chunks) {
     const handle = event => {
       if (session !== s || abort.signal.aborted) return;
       if (event.type === "error") throw new Error(event.message);
-      if (event.type === "status") $("status").textContent = event.message.startsWith("Waiting") ? "Waiting" : "Thinking";
+      if (event.type === "status") $("status").textContent = event.message.startsWith("Waiting") ? t("waiting") : t("thinking");
       if (event.type === "transcript") line("You", event.text);
       if (event.type === "response") { responseText = event.text; assistant = line("HackBuddy", event.text); }
       if (event.type === "text" && $("mode").value === "native") {
-        if (!assistant) { line("You", "[Spoken audio]"); assistant = line("HackBuddy", ""); }
+        if (!assistant) { line("You", t("spoken")); assistant = line("HackBuddy", ""); }
         responseText += event.delta; assistant.querySelector("span").textContent = responseText;
       }
       if (event.type === "tool_started") log(`${event.name} · running`);
@@ -128,7 +139,7 @@ async function turn(s, chunks) {
       }
       if (done) break;
     }
-    if (!completed) throw new Error("The local stream ended before completing the turn.");
+    if (!completed) throw new Error(t("streamError"));
   } catch (error) {
     if (error.name !== "AbortError" && session === s) { log(error.message); $("status").textContent = error.message; }
   } finally {
@@ -136,7 +147,7 @@ async function turn(s, chunks) {
       // Keep the microphone active but gate turn capture until generated speech finishes.
       const remaining = Math.max(0, s.playAt - s.context.currentTime);
       await new Promise(resolve => setTimeout(resolve, remaining * 1000 + 180));
-      if (session === s && s.abort === abort) { s.busy = false; resetCapture(s); talkState("listening"); $("status").textContent = "Listening"; }
+      if (session === s && s.abort === abort) { s.busy = false; resetCapture(s); talkState("listening"); $("status").textContent = t("listening"); }
     }
   }
 }
@@ -153,7 +164,7 @@ function capture(s, samples) {
     if (rms < THRESHOLD) return;
     s.started = now; s.lastVoice = now; s.chunks = [...s.preRoll]; s.preRoll = [];
     s.voicedMs = duration;
-    $("status").textContent = "Listening";
+    $("status").textContent = t("listening");
     return;
   }
   s.chunks.push(samples);
@@ -168,10 +179,12 @@ $("start").onclick = async () => {
     const s = session;
     if (s.busy) {
       s.abort?.abort(); s.abort = null; stopPlayback(s); s.busy = false; resetCapture(s); talkState("listening");
-      $("status").textContent = "Listening";
-    } else { release(s); $("status").textContent = "Ready"; }
+      $("status").textContent = t("listening");
+    } else { release(s); $("status").textContent = t("ready"); }
     return;
   }
+  if ($("start").disabled || window.petalChatBusy) return;
+  window.petalVoiceActive = true;
   const s = { sources: new Set(), playAt: 0, busy: false };
   session = s; resetCapture(s);
   $("start").disabled = true; $("mode").disabled = true;
@@ -187,8 +200,12 @@ $("start").onclick = async () => {
     s.gain = s.context.createGain(); s.gain.gain.value = 0;
     s.source.connect(s.node); s.node.connect(s.gain); s.gain.connect(s.context.destination);
     s.node.port.onmessage = event => capture(s, event.data);
-    talkState("listening"); $("status").textContent = "Listening";
-  } catch (error) { release(s); $("status").textContent = error.message; }
+    talkState("listening"); $("status").textContent = t("listening");
+  } catch (error) { release(s); $("status").textContent = t("micError"); }
 };
 window.addEventListener("pagehide", () => { if (session) release(session); });
 refreshNotes().catch(error => log(error.message));
+
+$("chat-dialog").addEventListener("close", () => { if(session) release(session); });
+window.addEventListener("petal-quiet", () => { if(session) release(session); });
+talkState("idle");
