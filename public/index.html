@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>HackBuddy · Voice to knowledge</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header><div><span class="logo">✳</span><strong>HackBuddy</strong><span class="subtitle">VOICE TO KNOWLEDGE</span></div><button id="export" disabled>Export vault</button></header>
+    <section id="login" class="login">
+      <h1>Your ideas, connected.</h1><p>Talk through an idea. Build a living Markdown vault as you go.</p>
+      <form id="login-form"><label for="password">Vault password</label><div class="row"><input id="password" type="password" autocomplete="current-password" required placeholder="Your APP_PASSWORD" /><button class="primary">Open vault</button></div></form>
+    </section>
+    <main id="workspace" hidden>
+      <aside class="vault"><div class="panel-heading"><h2>Knowledge vault</h2><button id="new-note">+ Note</button></div><input id="search" type="search" placeholder="Search notes…" aria-label="Search notes" /><nav id="notes" aria-label="Markdown notes"></nav><p class="hint">Markdown · [[wikilinks]] · #tags<br />Saved persistently in Cloudflare D1</p></aside>
+      <section class="editor-panel"><div class="panel-heading"><div><h2 id="note-title">A home for your thinking</h2><small id="note-meta">Choose a note, or start talking.</small></div><div class="row"><button id="download" disabled>.md ↓</button><button id="save" disabled>Save</button></div></div><textarea id="editor" spellcheck="false" disabled aria-label="Markdown editor" placeholder="# Your next idea&#10;&#10;Tell HackBuddy what you're working on. It will organize your ideas here. Remembered context, related notes, and sourced research — all in Markdown."></textarea><div id="links" class="links"></div><details id="history"><summary>Revision history</summary><div id="revisions"></div></details></section>
+      <section class="voice-panel"><div class="panel-heading"><h2>Thinking partner</h2><span id="model" class="badge">Realtime</span></div><div class="voice-controls"><div id="orb" class="orb">✳</div><p id="voice-status" role="status">Ready when you are</p><div class="row"><button id="start" class="primary">Start conversation</button><button id="mute" disabled>Mute</button><button id="stop" disabled>End</button></div><audio id="audio" autoplay controls></audio></div><div id="transcript" class="transcript" aria-live="polite"><p class="hint">Try: “I’m planning a new project. Help me explore it and keep notes.”</p></div><form id="message-form" class="row"><input id="message" placeholder="Or send a message…" aria-label="Message" disabled /><button id="send" disabled>Send</button></form><details open><summary>Live tool activity</summary><div id="activity"></div></details></section>
+    </main>
+    <p id="notice" role="alert"></p>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

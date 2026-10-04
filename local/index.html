@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Petal · Your second mind</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+<header><a class="brand" href="/" aria-label="Petal home">petal<span class="brand-dot">.</span></a><span class="local-label"><i></i> Local</span></header>
+<main>
+<aside class="sidebar"><div class="section-label">Notes <span id="note-count">0</span></div><input id="search" type="search" placeholder="Search" aria-label="Search your notes"><nav id="note-list" aria-label="Notes"></nav><button id="new-note" class="text-button">＋ New note</button></aside>
+<section class="note-panel"><div class="note-toolbar"><div id="breadcrumb">Untitled</div><span id="save-state"></span></div><div class="note-heading"><input id="note-path" aria-label="Note path" placeholder="Untitled.md" disabled><button id="save-note" disabled>Save</button></div><textarea id="editor" aria-label="Markdown note editor" placeholder="Start here." disabled></textarea><div id="note-links"></div><div class="editor-foot"><span id="word-count">0 words</span></div></section>
+<section class="companion"><div class="section-label">Voice</div><div class="voice-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div><button id="start" class="talk-button" aria-label="Start voice conversation"><span id="talk-icon">◉</span><span id="talk-label">Talk</span></button><p id="status" role="status">Ready</p><div id="meter"><div id="level"></div></div><div id="conversation" aria-live="polite"></div><details class="settings"><summary>Settings</summary><select id="mode" aria-label="Voice mode"><option value="tools">Voice + notes</option><option value="native">Audio only</option></select><pre id="timing"></pre></details></section>
+</main>
+<footer class="activity-bar"><div class="activity-title"><span>·</span></div><div id="feedback" role="status">All changes saved</div><details id="activity-details"><summary>Activity ↗</summary><pre id="activity"></pre></details></footer>
+<script type="module" src="/vault.js"></script><script type="module" src="/voice.js"></script>
+</body></html>

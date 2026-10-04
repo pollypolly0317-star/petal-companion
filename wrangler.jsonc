@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "hackbuddy",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "vars": {
+    "REALTIME_MODEL": "gpt-realtime-2.1-mini",
+    "REALTIME_VOICE": "marin",
+    "EXA_SEARCH_TYPE": "fast"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "hackbuddy-vault",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "observability": { "enabled": true }
+}
