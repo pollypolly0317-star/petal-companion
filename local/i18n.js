@@ -37,6 +37,7 @@ Object.assign(en, {
   micError: "Microphone unavailable. You can type a message instead.", send: "Send message"
 });
 const zh = {
+  fullDemo:"完整英文配音演示 · 约 2 分钟",
   openLocalApp:"打开本地应用",showcaseVoice:"实时语音需要在本地应用中运行语音与对话模型。线上展示提供陪伴预览、专注计时和浏览器便签。",skip:"跳转至正文",meet:"认识 Petal",tryMoment:"陪伴一刻",littleNotes:"小小便签",watchDemo:"观看演示",
   headline1:"情绪很大。",headline2:"搭子软软的。",lead1:"一点专注，一点笑意。",lead2:"忙碌之间，也有一个柔软的落脚点。",
   spendMinute:"和她待一会儿",seeAction:"看看怎么互动",conceptNote:"未来的桌面陪伴搭子。先在这里认识她。",petAria:"轻轻摸摸 Petal",givePat:"轻轻摸摸她",

@@ -10,6 +10,10 @@ The online showcase includes a pat interaction, four mood examples, playful repl
 
 Guided replies are explicitly labeled as samples. The physical companion is a concept. The site does not claim to sense your emotions.
 
+## Full narrated walkthrough
+
+[Watch the complete English demo](https://pollypolly0317-star.github.io/petal-companion/assets/petal-full-demo.mp4): about two minutes, with narration, English captions, the owner-selected product video, and all main web features.
+
 ## Live voice on your computer
 
 Live inference runs in the local Python application. GitHub Pages serves static files and does not run model servers.

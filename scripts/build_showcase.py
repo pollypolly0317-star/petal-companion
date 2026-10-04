@@ -6,7 +6,7 @@ root = Path(__file__).resolve().parent.parent
 source, target = root / "local", root / "dist"
 target.mkdir(exist_ok=True)
 files = ["index.html", "style.css", "companion.js", "i18n.js", "runtime.js", "vault.js", "voice.js", "microphone.js"]
-assets = ["desk-scene.webp", "petal-pink.webp", "petal-family.webp", "icons.svg", "lucide-LICENSE", "petal-product-demo.mp4", "demo-poster.jpg"]
+assets = ["desk-scene.webp", "petal-pink.webp", "petal-family.webp", "icons.svg", "lucide-LICENSE", "petal-product-demo.mp4", "petal-full-demo.mp4", "petal-full-demo.vtt", "demo-poster.jpg"]
 for name in files:
     shutil.copyfile(source / name, target / name)
 (target / "assets").mkdir(exist_ok=True)
